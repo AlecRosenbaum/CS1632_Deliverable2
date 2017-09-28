@@ -1,5 +1,8 @@
+import java.util.Random;
+
 public class Driver {
     protected Location curr_loc;
+    private Random random;
 
     /**
      * Create a new driver at a given location.
@@ -10,15 +13,16 @@ public class Driver {
      */
     public Driver(Location starting_loc, int seed) {
         this.curr_loc = starting_loc;
+        this.random = new Random(seed);
     }
 
     /**
-     * Randomly get the next location based on roads connected to the current location.
+     * Randomly get a road connected to the current location.
      *
-     * @return Location - next location to visit
+     * @return Road - a random road connected to the current location
      */
-    public Location get_next_loc() {
-        // TODO
+    public Road get_rand_road() {
+        return curr_loc.roads.get(this.random.nextInt(curr_loc.roads.size()));
     }
 
     /**
@@ -29,7 +33,9 @@ public class Driver {
      */
     public String move(Road road) {
         // move along road
-        return "";
+        String ret_str = "heading from " + curr_loc.name + " to " + road.to.name + " via " + road.name + ".";
+        curr_loc = road.to;
+        return ret_str;
     }
 
     /**
@@ -39,6 +45,6 @@ public class Driver {
      * @return String - string representation of the movement.
      */
     public String random_move() {
-        // TODO
+        return this.move(this.get_rand_road());
     }
 }
