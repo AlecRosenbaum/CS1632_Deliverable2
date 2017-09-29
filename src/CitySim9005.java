@@ -36,12 +36,12 @@ public class CitySim9005 {
         Random random = new Random(rand_seed);
 
         // construct city locations
-        Location philadelphia = new Location("Outside City");
-        Location cleveland = new Location("Outside City");
-        Location hotel = new Location("Hotel");
-        Location diner = new Location("Diner");
-        Location library = new Location("Library");
-        Location coffee = new Location("Coffee");
+        Location philadelphia = new Location("Outside City", rand_seed);
+        Location cleveland = new Location("Outside City", rand_seed);
+        Location hotel = new Location("Hotel", rand_seed);
+        Location diner = new Location("Diner", rand_seed);
+        Location library = new Location("Library", rand_seed);
+        Location coffee = new Location("Coffee", rand_seed);
         Location[] starting = {hotel, diner, library, coffee};
 
 
@@ -57,7 +57,7 @@ public class CitySim9005 {
 
         // for 5 drivers (note: sample number 1-5, not 0-4)
         for (int i = 1; i < 6; i++) {
-            Driver curr_driver = new Driver(starting[random.nextInt(4)], rand_seed);
+            Driver curr_driver = new Driver(starting[random.nextInt(4)]);
             // run until they leave the city
             while (curr_driver.curr_loc != philadelphia && curr_driver.curr_loc != cleveland) {
                 System.out.println("Driver " + i + " " + curr_driver.random_move());

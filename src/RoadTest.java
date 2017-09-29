@@ -1,5 +1,6 @@
 import static org.junit.Assert.*;
 import org.junit.*;
+import static org.mockito.Mockito.*;
 
 public class RoadTest {
 
@@ -11,8 +12,8 @@ public class RoadTest {
     // Create a new LaboonCoin instance before each test.
     @Before
     public void setup() {
-        _from = new Location("from");
-        _to = new Location("to");
+        _from = mock(Location.class);
+        _to = mock(Location.class);
         _r = new Road("test_road", _from, _to);
     }
 
@@ -23,10 +24,22 @@ public class RoadTest {
         assertNotNull(_r);
     }
 
-    // Some comment for what im doing
+    // Make sure "name" field is set correctly
     @Test
-    public void testSomething() {
-        assertEquals("", "");
+    public void testGetName() {
+        assertEquals(_r.getName(), "test_road");
+    }
+
+    // Make sure "to" field is set correctly
+    @Test
+    public void testGetTo() {
+        assertEquals(_r.getTo(), _to);
+    }
+
+    // Make sure "from" field is set correctly
+    @Test
+    public void testGetFrom() {
+        assertEquals(_r.getFrom(), _from);
     }
 
 }

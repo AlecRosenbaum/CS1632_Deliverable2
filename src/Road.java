@@ -1,7 +1,7 @@
 public class Road {
-    protected Location from;
-    protected Location to;
-    protected String name;
+    private Location from;
+    private Location to;
+    private String name;
 
     /**
      * Create a new road with the given properties. Note that all roads are one way.
@@ -15,6 +15,18 @@ public class Road {
         this.name = name;
         this.from = from;
         this.to = to;
+    }
+
+    public Location getTo() {
+        return this.to;
+    }
+
+    public Location getFrom() {
+        return this.from;
+    }
+
+    public String getName() {
+        return this.name;
     }
 
 }
