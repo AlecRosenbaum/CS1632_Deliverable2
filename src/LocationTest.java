@@ -63,18 +63,13 @@ public class LocationTest {
     // test get_rand_road will return a road specified by random.nextInt(#)
     @Test
     public void testGetRandRoad_two_roads() {
-        // subclass, then mock + stub the random variable
-        _l = new Location("test_loc", 0) {{
-            Random random = mock(Random.class);
-            when(random.nextInt(2)).thenReturn(0);
-        }};
-
         Road _r1 = mock(Road.class);
         Road _r2 = mock(Road.class);
         _l.add_road(_r1);
         _l.add_road(_r2);
         
-        assertEquals(_l.get_rand_road(), _r1);
+        // seed value of 0 always picks _r2
+        assertEquals(_l.get_rand_road(), _r2);
     }
 
 }
